@@ -1,0 +1,629 @@
+
+CREATE TABLE stg_gskcompass_dev.gskcompass_81_stg_tbl_cm(   
+    country           	NVARCHAR(1000),
+    data_provider       NVARCHAR(1000),
+    channel           	NVARCHAR(1000),
+    sku             	NVARCHAR(1000),
+    loc_sub_brand       NVARCHAR(1000),
+    loc_brand           NVARCHAR(1000),
+    loc_sub_category_3  NVARCHAR(1000),
+    loc_category        NVARCHAR(1000),
+    pack_size           NVARCHAR(1000),
+    unit_of_measure     NVARCHAR(1000),  
+    pack_form           NVARCHAR(1000),
+    pack_strength       NVARCHAR(1000),
+    active_ingredient   NVARCHAR(1000),
+    manufacturer        NVARCHAR(1000),
+    atc_code            NVARCHAR(1000),
+    otc_code            NVARCHAR(1000),
+    promo_non_promo     NVARCHAR(1000),
+    promo_type          NVARCHAR(1000),
+    currency            NVARCHAR(1000),
+    measure           	NVARCHAR(1000)  ,
+    end_data_of_latest_data_period  DATETIME,
+    month_1  	DECIMAL(25,12),
+    month_2  	DECIMAL(25,12),
+    month_3  	DECIMAL(25,12),
+    month_4  	DECIMAL(25,12),
+    month_5  	DECIMAL(25,12),
+    month_6  	DECIMAL(25,12),
+    month_7  	DECIMAL(25,12),
+    month_8  	DECIMAL(25,12),
+    month_9  	DECIMAL(25,12),
+    month_10    DECIMAL(25,12),
+    month_11    DECIMAL(25,12),
+    month_12    DECIMAL(25,12),
+    month_13    DECIMAL(25,12),
+    month_14    DECIMAL(25,12),
+    month_15    DECIMAL(25,12),
+    month_16    DECIMAL(25,12),
+    month_17    DECIMAL(25,12),
+    month_18    DECIMAL(25,12),
+    month_19    DECIMAL(25,12),
+    month_20    DECIMAL(25,12),
+    month_21    DECIMAL(25,12),
+    month_22    DECIMAL(25,12),
+    month_23    DECIMAL(25,12),
+    month_24    DECIMAL(25,12),
+    month_25    DECIMAL(25,12),
+    month_26    DECIMAL(25,12),
+    month_27    DECIMAL(25,12),
+    month_28    DECIMAL(25,12),
+    month_29    DECIMAL(25,12),
+    month_30    DECIMAL(25,12), 
+    month_31    DECIMAL(25,12),
+    month_32    DECIMAL(25,12),
+    month_33    DECIMAL(25,12),
+    month_34    DECIMAL(25,12),
+    month_35    DECIMAL(25,12),
+    month_36    DECIMAL(25,12),
+    month_37    DECIMAL(25,12),
+    month_38    DECIMAL(25,12),
+    month_39    DECIMAL(25,12),
+    month_40    DECIMAL(25,12),
+    month_41    DECIMAL(25,12),
+    month_42    DECIMAL(25,12),
+    month_43    DECIMAL(25,12),
+    month_44    DECIMAL(25,12),
+    month_45    DECIMAL(25,12),
+    month_46    DECIMAL(25,12),
+    month_47    DECIMAL(25,12),
+    month_48    DECIMAL(25,12),
+    month_49    DECIMAL(25,12),
+    month_50    DECIMAL(25,12),
+    month_51    DECIMAL(25,12),
+    month_52    DECIMAL(25,12),
+    month_53    DECIMAL(25,12),
+    month_54    DECIMAL(25,12),
+    month_55    DECIMAL(25,12),
+    month_56    DECIMAL(25,12),
+    month_57    DECIMAL(25,12),
+    month_58    DECIMAL(25,12),
+    month_59    DECIMAL(25,12),
+    month_60    DECIMAL(25,12),
+  filename      NVARCHAR(1000),
+  load_date     DATETIME    ,
+  load_id  	INTEGER  
+);  
+
+CREATE TABLE stg_gskcompass_dev.gskcompass_81_stg_tbl_pm(   
+    country           	NVARCHAR(1000),
+    data_provider       NVARCHAR(1000),
+    channel           	NVARCHAR(1000),
+    sku             	NVARCHAR(1000),
+    loc_sub_brand       NVARCHAR(1000),
+    loc_brand           NVARCHAR(1000),
+    loc_sub_category_3  NVARCHAR(1000),
+    loc_category        NVARCHAR(1000),
+    pack_size           NVARCHAR(1000),
+    unit_of_measure     NVARCHAR(1000),  
+    pack_form           NVARCHAR(1000),
+    pack_strength       NVARCHAR(1000),
+    active_ingredient   NVARCHAR(1000),
+    manufacturer        NVARCHAR(1000),
+    atc_code            NVARCHAR(1000),
+    otc_code            NVARCHAR(1000),
+    promo_non_promo     NVARCHAR(1000),
+    promo_type          NVARCHAR(1000),
+    currency            NVARCHAR(1000),
+    measure           	NVARCHAR(1000)  ,
+    end_data_of_latest_data_period  DATETIME,
+    month_1  	DECIMAL(25,12),
+    month_2  	DECIMAL(25,12),
+    month_3  	DECIMAL(25,12),
+    month_4  	DECIMAL(25,12),
+    month_5  	DECIMAL(25,12),
+    month_6  	DECIMAL(25,12),
+    month_7  	DECIMAL(25,12),
+    month_8  	DECIMAL(25,12),
+    month_9  	DECIMAL(25,12),
+    month_10    DECIMAL(25,12),
+    month_11    DECIMAL(25,12),
+    month_12    DECIMAL(25,12),
+    month_13    DECIMAL(25,12),
+    month_14    DECIMAL(25,12),
+    month_15    DECIMAL(25,12),
+    month_16    DECIMAL(25,12),
+    month_17    DECIMAL(25,12),
+    month_18    DECIMAL(25,12),
+    month_19    DECIMAL(25,12),
+    month_20    DECIMAL(25,12),
+    month_21    DECIMAL(25,12),
+    month_22    DECIMAL(25,12),
+    month_23    DECIMAL(25,12),
+    month_24    DECIMAL(25,12),
+    month_25    DECIMAL(25,12),
+    month_26    DECIMAL(25,12),
+    month_27    DECIMAL(25,12),
+    month_28    DECIMAL(25,12),
+    month_29    DECIMAL(25,12),
+    month_30    DECIMAL(25,12), 
+    month_31    DECIMAL(25,12),
+    month_32    DECIMAL(25,12),
+    month_33    DECIMAL(25,12),
+    month_34    DECIMAL(25,12),
+    month_35    DECIMAL(25,12),
+    month_36    DECIMAL(25,12),
+    month_37    DECIMAL(25,12),
+    month_38    DECIMAL(25,12),
+    month_39    DECIMAL(25,12),
+    month_40    DECIMAL(25,12),
+    month_41    DECIMAL(25,12),
+    month_42    DECIMAL(25,12),
+    month_43    DECIMAL(25,12),
+    month_44    DECIMAL(25,12),
+    month_45    DECIMAL(25,12),
+    month_46    DECIMAL(25,12),
+    month_47    DECIMAL(25,12),
+    month_48    DECIMAL(25,12),
+    month_49    DECIMAL(25,12),
+    month_50    DECIMAL(25,12),
+    month_51    DECIMAL(25,12),
+    month_52    DECIMAL(25,12),
+    month_53    DECIMAL(25,12),
+    month_54    DECIMAL(25,12),
+    month_55    DECIMAL(25,12),
+    month_56    DECIMAL(25,12),
+    month_57    DECIMAL(25,12),
+    month_58    DECIMAL(25,12),
+    month_59    DECIMAL(25,12),
+    month_60    DECIMAL(25,12),
+  filename      NVARCHAR(1000),
+  load_date     DATETIME    ,
+  load_id  	INTEGER  
+);  
+
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_cm(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period		NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value			DECIMAL(25,12)	,
+Unit_Sales		DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_pm(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period		NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value			DECIMAL(25,12)	,
+Unit_Sales		DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Transposed_cm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period	NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value			DECIMAL(25,12)	,
+Unit_Sales		DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL	(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Transposed_pm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period	NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value			DECIMAL(25,12)	,
+Unit_Sales		DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL	(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Consolidated_cm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel		NVARCHAR(1000)	,
+SKU		NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period		NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value		DECIMAL(25,12)	,
+Unit_Sales	DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Consolidated_pm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel		NVARCHAR(1000)	,
+SKU		NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period		NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value		DECIMAL(25,12)	,
+Unit_Sales	DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo		DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo		DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base		DECIMAL(25,12),
+Unit_Sales_Base		DECIMAL(25,12),
+filename		NVARCHAR(1000)	,
+load_date		DATETIME,
+load_id			INTEGER,	
+Measure 		NVARCHAR(1000),
+);
+
+
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Target_cm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period	NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value	DECIMAL(25,12)	,
+Unit_Sales	DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo	DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo	DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base	DECIMAL(25,12),
+Unit_Sales_Base	DECIMAL(25,12),
+filename	NVARCHAR(1000)	,
+load_date	DATETIME,
+load_id	INTEGER,	
+Measure NVARCHAR(1000)
+);
+
+create table stg_gskcompass_dev.gskcompass_31_stg_tbl_Target_pm
+(
+Country	NVARCHAR(1000)	,
+Data_Provider	NVARCHAR(1000)	,
+Channel	NVARCHAR(1000)	,
+SKU	NVARCHAR(1000)	,
+LOC_Brand	NVARCHAR(1000)	,
+LOC_Category	NVARCHAR(1000)	,
+LOC_Sub_Brand	NVARCHAR(1000)	,
+LOC_Sub_Category_3	NVARCHAR(1000)	,
+Pack_Size	NVARCHAR(1000)	,
+Unit_of_Measure	NVARCHAR(1000)	,
+Pack_Form	NVARCHAR(1000)	,
+Pack_Strength	NVARCHAR(1000)	,
+Active_Ingredient	NVARCHAR(1000)	,
+Manufacturer	NVARCHAR(1000)	,
+ATC_Code	NVARCHAR(1000)	,
+OTC_Code	NVARCHAR(1000)	,
+Promo_Non_Promo	NVARCHAR(1000)	,
+Promo_Type	NVARCHAR(1000)	,
+Currency	NVARCHAR(1000)	,
+Period	NVARCHAR(1000)	,
+Periodicity	NVARCHAR(1000)	,
+Value	DECIMAL(25,12)	,
+Unit_Sales	DECIMAL(25,12)	,
+Weighted_Distribution	DECIMAL(25,12)	,
+Numeric_Distribution	DECIMAL(25,12)	,
+Value_Promo	DECIMAL(25,12)	,
+Unit_Sales_Promo	DECIMAL(25,12),
+Value_Non_Promo	DECIMAL(25,12),
+Unit_Sales_Non_Promo	DECIMAL(25,12),
+Value_Base	DECIMAL(25,12),
+Unit_Sales_Base	DECIMAL(25,12),
+filename	NVARCHAR(1000)	,
+load_date	DATETIME,
+load_id	INTEGER,	
+Measure NVARCHAR(1000)
+);
+
+
+
+
+Create view [stg_gskcompass_dev].global_and_area_consumption_fact_tbl_previous_month_may_vw as
+WITH dim_cat AS 
+	 ( SELECT distinct a.sub_category_3_code ,sub_category_3_desc ,external_category_desc ,b.sku_code
+	   FROM [mart].[dim_product_category] a  , mart.dim_product b , [mart].[mapping_sub_category_3] [msc3]
+	   WHERE b.sub_category_level_3_code=a.sub_category_3_code 
+	   AND a.is_deleted<>1 AND a.has_data_flag<>0 AND b.brand_code<>-1 
+	   AND  b.is_deleted<>1 AND a.[sub_category_3_id]=[msc3].[sub_category_3_id])	
+select
+dprod.[active_ingredient] AS [Active_Ingredient_id]											  
+       , dprod.[ATC_Code]
+	   , DBU.sort_order	  AS BU_ID											  
+	   , dts.[channel_code]		 --dtsd changed to dts								  	
+       , dc.[country_id]                                              
+       , dcur.[currency_id]                                           
+       , dp.[data_provider_id]                                        
+       , stgtgt1.[filename]
+	   , stgtgt1.[Channel]
+       , Load_date                                                    
+       , Load_id                                                      
+       , dprod.[dp_brand]     AS LOC_Brand                                        
+       , stgtgt1.[LOC_Category]                                        
+       , msb.local_sub_brand_desc  AS LOC_Sub_Brand                                   
+       , msc.local_sub_category_3_desc  AS LOC_Sub_Category_3                              
+      --,stgtgt1.LOC_Sub_Brand                                         
+      --,stgtgt1.[LOC_Sub_Category_3]                                  
+       , dprod.[manufacturer_code]                                    
+       , dprod.[otc_code]                                             
+       , stgtgt1.[Pack_Form]                                           
+       , stgtgt1.[Pack_Size]                                           
+       , stgtgt1.[Pack_Strength]                                       
+       , stgtgt1.[Promo_Type]                                          
+       , Promo_Non_Promo                                              
+       , dprod.[sku_desc]   AS SKU_DESC                                          
+       , dprod.[sku_code]   AS SKU_CODE                                         
+       , dprod.Unit_of_Measure                                        
+       , dt.month_id                                                  
+       , stgtgt1.[Periodicity]                                         
+       , [Value]                                                      
+       , [Unit_Sales]                                                 
+       , [Weighted_Distribution]                                      
+       , [Numeric_Distribution]                                       
+       , [Value_Promo]                                                
+       , [Unit_Sales_Promo]                                           
+       , [Value_Non_Promo]                                            
+       , [Unit_Sales_Non_Promo]                                       
+       , [Value_Base]                                                 
+       , [Unit_Sales_Base]                                            
+       , NULL as  volume_equivalent    
+	   , [Value]   as    Value_Sales                                                
+       , [Value_Promo]  as   Value_Promo_Sales                                            
+       , [Value_Base] as    Value_Base_Sales                                             
+	   , Null as [Months_Transposed]
+       , Null as [balance_member_flag]
+	   , Null as [balance_member_level] 
+       , dprod. brand_code as  brand_id                                         
+	   , dprod.[brand_desc] as brand_code
+       , Null as [brand_masked]
+       , Null as  [brand_masked_flag]
+       , dprod.category_code                                          
+       , Null as [category_competitor_priority] 
+       , Null as  [db_file_log_id]
+       , Null as [db_load_log_id]
+       , Null as  [dp_channel_code] 
+       , Null as  [file_mapping_id] 
+       , Null as  [include_channel_flag] 
+       , dprod.[manufacturer_desc]  as local_manufacturer_id                                              
+	   , Null as  [local_sub_brand_id]
+	   , Null as  [local_sub_category_3_id]
+, Null as [managing_company_id]
+, Null as [managing_company_masked_flag] 
+, dprod.[manufacturer_code]  as Manufacturer_cd                                	      
+, Null as [manufacturer_masked] 
+, Null as [manufacturer_masked_flag] 
+, Null as [product_form] 
+, Null as [product_id] 
+, Null as [product_size]
+, Null as [strength]
+, Null as [promo_code]
+, Null as [promotion_type] 
+, Null as [sku_masked]
+, dprod.sub_brand_code                                         		 
+, dprod.[sub_brand_desc] as  sub_brand_id                                         
+, Null as [sub_brand_masked]
+, Null as [sub_brand_masked_flag] 
+, dprod. [sub_category_level_3_code] 
+, dprod. [sub_category_level_1_code]
+, dprod. [sub_category_level_3_desc]  as sub_category3
+, Null as [time_version]
+, Null as [time_version_id] 
+,dtsm. [trade_sector_id] -- dts to dtsm
+,Null as [value_cy]
+,Null as [value_py] 
+,Null as [version_num]
+,Null as [version_id] 
+,Null as [open_attribute1_tbd] 
+,Null as [open_attribute2_tbd] 
+,Null as [open_attribute3_tbd]
+,Null as [open_attribute4_tbd] 
+,Null as [open_attribute5_tbd]
+,Null as [open_attribute6_tbd]
+,Null as [open_attribute7_tbd]
+,Null as [open_attribute8_tbd]
+,Null as [open_attribute9_tbd]
+,Null as [open_attribute10_tbd]
+,Null as [open_attribute1_val1]
+,Null as [open_attribute2_val2]
+,Null as [open_attribute3_val3]
+,Null as [open_attribute4_val4]
+,Null as [open_attribute5_val5]
+,Null as [open_attribute6_val6]
+,Null as [open_attribute7_val7]
+,Null as [open_attribute8_val8]
+,Null as [open_attribute9_val9]
+,Null as [open_attribute10_val10]
+--INTO [stg_gskcompass_dev].[global_and_area_consumption_fact_tbl_current_month]
+FROM
+    [stg_gskcompass_dev].[gskcompass_31_stg_tbl_Target1] as stgtgt11  
+    JOIN [mart].[dim_product] dprod ON (upper(TRIM(stgtgt1.[SKU]))= UPPER(TRIM(dprod.[sku_desc])) AND dprod.is_deleted<>1)
+    JOIN [mart].[dim_country] dc ON  ( stgtgt1.[Country]= dc.[country_iso_code] and dprod.country_id = dc.country_id)
+    JOIN [mart].[dim_data_provider] AS dp on (TRIM(stgtgt1.[Data_Provider])= TRIM(dp.[data_provider_desc]) AND dp.data_provider_id =dprod.data_provider_id)
+    LEFT OUTER JOIN [mart].[dim_currency] AS dcur ON TRIM(stgtgt1.[Currency])= TRIM(dcur.[currency_code])
+    LEFT OUTER JOIN [mart].[dim_time] AS dt ON stgtgt1.[Period]= dt.[month_id]
+    LEFT OUTER JOIN [mart].[dp_trade_sector_mapping] AS dtsm ON (UPPER(TRIM(stgtgt1.[Channel]))= UPPER(TRIM(dtsm.[dp_trade_sector])) AND dtsm.data_provider_id=dp.data_provider_id  AND [dc].[country_id]= dtsm.[country_id]) --dts changed to dtsm
+    LEFT OUTER JOIN [mart].[dim_trade_sector] dts ON (UPPER(TRIM(stgtgt1.[Channel]))= UPPER(TRIM(dts.trade_sector_desc)))
+	AND dts.trade_sector_id = dtsm.trade_sector_id --COMMENTED SEP 27
+	--AND UPPER(TRIM(dts.trade_sector_desc))=UPPER(TRIM(dtsm.dp_trade_sector))) NEWLY ADDED SEP 27
+    LEFT OUTER JOIN [mart].[dim_bu_country] AS dbu ON TRIM(stgtgt1.[Country])= TRIM(dbu.[country_iso_code])
+    LEFT OUTER JOIN dim_cat AS dpc ON (dpc.sub_category_3_code = dprod.sub_category_level_3_code AND dpc.sku_code=dprod.sku_code)
+	LEFT OUTER JOIN [mart].[mapping_sub_category_3] AS msc ON UPPER(TRIM(stgtgt1.[LOC_Sub_Category_3])) = UPPER(TRIM(msc.local_sub_category_3_desc)) and dprod.country_id=msc.country_id and msc.is_deleted<>1
+	LEFT OUTER JOIN [mart].[mapping_sub_brand] AS msb ON UPPER(TRIM(stgtgt1.LOC_Sub_Brand)) = UPPER(TRIM(msb.local_sub_brand_desc)) and dprod.country_id=msb.country_id and msb.is_deleted<>1
+GO
+
+
+
+
