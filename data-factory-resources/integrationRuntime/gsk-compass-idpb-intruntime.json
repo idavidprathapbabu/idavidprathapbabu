@@ -1,0 +1,7 @@
+{
+	"name": "gsk-compass-idpb-intruntime",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "gsk-compass-idpb-intruntime"
+	}
+}
