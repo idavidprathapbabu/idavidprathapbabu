@@ -1,0 +1,279 @@
+{
+	"name": "pl_load_rawfiles_into_stage_tables",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get _File_List",
+				"description": "File List from Azure Blob storage",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "store_load_id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_get_file_list",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEachFileIterations",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get _File_List",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get _File_List').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "get_column_count",
+							"type": "GetMetadata",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataset": {
+									"referenceName": "ds_excel_file_list",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"columnCount"
+								],
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							}
+						},
+						{
+							"name": "Switch_on_column_count",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "get_column_count",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@concat('column_',string(activity('get_column_count').output.columnCount),'_count')",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "column_81_count",
+										"activities": [
+											{
+												"name": "Set_variable_81_columns_file_name",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "fname",
+													"value": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											},
+											{
+												"name": "execute_pl_ingest_81_columns",
+												"type": "ExecutePipeline",
+												"dependsOn": [
+													{
+														"activity": "Set_variable_81_columns_file_name",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"pipeline": {
+														"referenceName": "pl_ingest_81_columns",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true,
+													"parameters": {
+														"pipeline_filename": {
+															"value": "@item().name",
+															"type": "Expression"
+														}
+													}
+												}
+											}
+										]
+									},
+									{
+										"value": "column_31_count",
+										"activities": [
+											{
+												"name": "Set_variable_31_columns_file_name",
+												"type": "SetVariable",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"variableName": "fname",
+													"value": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												}
+											},
+											{
+												"name": "execute_pl_ingest_31_columns",
+												"type": "ExecutePipeline",
+												"dependsOn": [
+													{
+														"activity": "Set_variable_31_columns_file_name",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"pipeline": {
+														"referenceName": "pl_ingest_31_columns",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true,
+													"parameters": {
+														"pipeline_filename": {
+															"value": "@item().name",
+															"type": "Expression"
+														}
+													}
+												}
+											}
+										]
+									}
+								],
+								"defaultActivities": [
+									{
+										"name": "Wait1",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 1
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "truncate_script",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ln_gskcompass_sqldb",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "truncate table [stg_gskcompass_dev].[gskcompass_81_stg_tbl];\ntruncate table [stg_gskcompass_dev].[gskcompass_31_stg_tbl];\n  SELECT ISNULL(MAX(load_id),0) +1 AS load_id \n  FROM [stg_gskcompass_dev].[gskcompass_81_stg_tbl];"
+						}
+					]
+				}
+			},
+			{
+				"name": "store_load_id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "truncate_script",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "g_load_id",
+					"value": {
+						"value": "@string(activity('truncate_script').output.resultSets[0].rows[0].load_id)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"fname": {
+				"type": "String"
+			},
+			"g_load_id": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "RawfileProcess"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-22T18:21:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

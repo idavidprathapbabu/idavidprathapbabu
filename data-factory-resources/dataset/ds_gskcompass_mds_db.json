@@ -1,0 +1,40 @@
+{
+	"name": "ds_gskcompass_mds_db",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_gskcompass_mds_sqldb",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"dbName": {
+					"value": "@dataset().dsdbname",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"dsdbname": {
+				"type": "string"
+			},
+			"dstablename": {
+				"type": "string"
+			},
+			"dsschemaname": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().dsschemaname",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().dstablename",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

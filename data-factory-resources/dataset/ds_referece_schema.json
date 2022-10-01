@@ -1,0 +1,30 @@
+{
+	"name": "ds_referece_schema",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_adls_gen2_filelocation",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_reference_schema_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ds_reference_schema_filename",
+					"type": "Expression"
+				},
+				"fileSystem": "refschema"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

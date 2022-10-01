@@ -1,0 +1,602 @@
+{
+	"name": "pl_copy_transformed_from_sql_of_81_columns",
+	"properties": {
+		"activities": [
+			{
+				"name": "load_transposed_data",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Script1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "WITH TRANSPOSE_DATA AS (SELECT  [country]\n      ,[data_provider]\n      ,[channel]\n      ,[sku]\n      ,[loc_sub_brand]\n      ,[loc_brand]\n      ,[loc_sub_category_3]\n      ,[loc_category]\n      ,[pack_size]\n      ,[unit_of_measure]\n      ,[pack_form]\n      ,[pack_strength]\n      ,[active_ingredient]\n      ,[manufacturer]\n      ,[atc_code]\n      ,[otc_code]\n      ,[promo_non_promo]\n      ,[promo_type]\n      ,[currency]\n      ,[measure]\n      ,[end_data_of_latest_data_period] ,filename,months,amount \n       FROM (\n           SELECT  [country]\n      ,[data_provider]\n      ,[channel]\n      ,[sku]\n      ,[loc_sub_brand]\n      ,[loc_brand]\n      ,[loc_sub_category_3]\n      ,[loc_category]\n      ,[pack_size]\n      ,[unit_of_measure]\n      ,[pack_form]\n      ,[pack_strength]\n      ,[active_ingredient]\n      ,[manufacturer]\n      ,[atc_code]\n      ,[otc_code]\n      ,[promo_non_promo]\n      ,[promo_type]\n      ,[currency]\n      ,[measure]\n      ,[end_data_of_latest_data_period]\n      ,filename\n      ,[month_1]\n      ,[month_2]\n      ,[month_3]\n      ,[month_4]\n      ,[month_5]\n      ,[month_6]\n      ,[month_7]\n      ,[month_8]\n      ,[month_9]\n      ,[month_10]\n      ,[month_11]\n      ,[month_12]\n      ,[month_13]\n      ,[month_14]\n      ,[month_15]\n      ,[month_16]\n      ,[month_17]\n      ,[month_18]\n      ,[month_19]\n      ,[month_20]\n      ,[month_21]\n      ,[month_22]\n      ,[month_23]\n      ,[month_24]\n      ,[month_25]\n      ,[month_26]\n      ,[month_27]\n      ,[month_28]\n      ,[month_29]\n      ,[month_30]\n      ,[month_31]\n      ,[month_32]\n      ,[month_33]\n      ,[month_34]\n      ,[month_35]\n      ,[month_36]\n      ,[month_37]\n      ,[month_38]\n      ,[month_39]\n      ,[month_40]\n      ,[month_41]\n      ,[month_42]\n      ,[month_43]\n      ,[month_44]\n      ,[month_45]\n      ,[month_46]\n      ,[month_47]\n      ,[month_48]\n      ,[month_49]\n      ,[month_50]\n      ,[month_51]\n      ,[month_52]\n      ,[month_53]\n      ,[month_54]\n      ,[month_55]\n      ,[month_56]\n      ,[month_57]\n      ,[month_58]\n      ,[month_59]\n      ,[month_60]\n      \n      FROM [stg_gskcompass_dev].[gskcompass_81_stg_tbl]\n\n       ) monthly_sales\nUNPIVOT (\n    amount FOR  months IN ([month_1]\n      ,[month_2]\n      ,[month_3]\n      ,[month_4]\n      ,[month_5]\n      ,[month_6]\n      ,[month_7]\n      ,[month_8]\n      ,[month_9]\n      ,[month_10]\n      ,[month_11]\n      ,[month_12]\n      ,[month_13]\n      ,[month_14]\n      ,[month_15]\n      ,[month_16]\n      ,[month_17]\n      ,[month_18]\n      ,[month_19]\n      ,[month_20]\n      ,[month_21]\n      ,[month_22]\n      ,[month_23]\n      ,[month_24]\n      ,[month_25]\n      ,[month_26]\n      ,[month_27]\n      ,[month_28]\n      ,[month_29]\n      ,[month_30]\n      ,[month_31]\n      ,[month_32]\n      ,[month_33]\n      ,[month_34]\n      ,[month_35]\n      ,[month_36]\n      ,[month_37]\n      ,[month_38]\n      ,[month_39]\n      ,[month_40]\n      ,[month_41]\n      ,[month_42]\n      ,[month_43]\n      ,[month_44]\n      ,[month_45]\n      ,[month_46]\n      ,[month_47]\n      ,[month_48]\n      ,[month_49]\n      ,[month_50]\n      ,[month_51]\n      ,[month_52]\n      ,[month_53]\n      ,[month_54]\n      ,[month_55]\n      ,[month_56]\n      ,[month_57]\n      ,[month_58]\n      ,[month_59]\n      ,[month_60])\n) as unpivot_data\n)\nSELECT [country]\n      ,[data_provider]\n      ,[channel]\n      ,[sku]\n      ,[loc_sub_brand]\n      ,[loc_brand]\n      ,[loc_sub_category_3]\n      ,[loc_category]\n      ,[pack_size]\n      ,[unit_of_measure]\n      ,[pack_form]\n      ,[pack_strength]\n      ,[active_ingredient]\n      ,[manufacturer]\n      ,[atc_code]\n      ,[otc_code]\n      ,[promo_non_promo]\n      ,[promo_type]\n      ,[currency]\n      ,measure\n      ,[end_data_of_latest_data_period]\n      ,filename\n      ,[Months]\n      ,amount\n      ,CASE WHEN [measure] = 'Unit Sales Promo' then amount ELSE '0' END AS [Unit Sales Promo]\n      ,CASE WHEN [measure] = 'Numeric Distribution' then amount ELSE '0' END AS [Numeric Distribution]\n      ,CASE WHEN [measure] = 'Unit Sales' then amount ELSE '0' END AS [Unit Sales]\n      ,CASE WHEN [measure] = 'Unit Sales Base' then amount ELSE '0' END AS [Unit Sales Base]\n      ,CASE WHEN [measure] = 'Value' then amount ELSE '0' END AS [Value]\n      ,CASE WHEN [measure] = 'Value Base' then amount ELSE '0' END AS [Value Base]\n      ,CASE WHEN [measure] = 'Value Non Promo' then amount ELSE '0' END AS [Value Non Promo]\n      ,CASE WHEN [measure] = 'Value Promo' then amount ELSE '0' END AS [Value Promo]\n      ,CASE WHEN [measure] = 'Weighted Distribution' then amount ELSE '0' END AS [Weighted Distribution]\n      ,GETDATE() AS load_date\n     -- ,(SELECT ISNULL(MAX(ISNULL(LOAD_ID,0)) + 1,1) AS LOAD_ID FROM [stg_gskcompass_dev].[gskcompass_31_stg_tbl_transposed] ) AS LOAD_ID\n     , 1  AS LOAD_ID\n  FROM transpose_data;\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "  WITH partial_copy AS (\nSELECT \n   log.[filename]\n  ,log.[rowsRead]\n  ,log.[rowsCopied]\n  ,log.[Execution_Status]\n  ,log.[Execution_flag]    \nFROM [stg_gskcompass_dev].[gskcompass_datapipeline_log] log \nWHERE Execution_flag='2'\nAND ISNULL(rowsread,0)<> ISNULL(rowscopied,0)\nAND ISNULL(rowscopied,0) >0 )\nDELETE FROM  [stg_gskcompass_dev].gskcompass_31_stg_tbl \nWHERE filename IN (SELECT filename FROM partial_copy);\nWITH partial_copy AS (\nSELECT \n   log.[filename]\n  ,log.[rowsRead]\n  ,log.[rowsCopied]\n  ,log.[Execution_Status]\n  ,log.[Execution_flag]    \nFROM [stg_gskcompass_dev].[gskcompass_datapipeline_log] log \nWHERE Execution_flag='2'\nAND ISNULL(rowsread,0)<> ISNULL(rowscopied,0)\nAND ISNULL(rowscopied,0) >0 )\nDELETE FROM  [stg_gskcompass_dev].gskcompass_81_stg_tbl \nWHERE filename IN (SELECT filename FROM partial_copy);",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "country",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "data_provider",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Data_Provider",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "channel",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Channel",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "sku",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "SKU",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loc_sub_brand",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LOC_Sub_Brand",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loc_brand",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LOC_Brand",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loc_sub_category_3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LOC_Sub_Category_3",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "loc_category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LOC_Category",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "pack_size",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Pack_Size",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "unit_of_measure",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Unit_of_Measure",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "pack_form",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Pack_Form",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "pack_strength",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Pack_Strength",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "active_ingredient",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Active_Ingredient",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "manufacturer",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Manufacturer",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "atc_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ATC_Code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "otc_code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "OTC_Code",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "promo_non_promo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Promo_Non_Promo",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "promo_type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Promo_Type",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "currency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "end_data_of_latest_data_period",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "Period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Months",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Periodicity",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Value",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Unit Sales",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Unit_Sales",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Weighted Distribution",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Weighted_Distribution",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Numeric Distribution",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Numeric_Distribution",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Value Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Value_Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Unit Sales Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Unit_Sales_Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Value Non Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Value_Non_Promo",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Value Base",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Value_Base",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "Unit Sales Base",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 10
+								},
+								"sink": {
+									"name": "Unit_Sales_Base",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 3,
+									"precision": 16
+								}
+							},
+							{
+								"source": {
+									"name": "filename",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "filename",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "load_date",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "load_date",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "LOAD_ID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "load_id",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "measure",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Measure",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_transposed_from_sql_query",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_transpose_data",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ln_gskcompass_sqldb",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": "truncate table stg_gskcompass_dev.gskcompass_31_stg_tbl_transposed"
+						}
+					]
+				}
+			},
+			{
+				"name": "send_email_sucess",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "load_transposed_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-04.uksouth.logic.azure.com:443/workflows/1e029c20f2ec48e5b668e0b6b3f629ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qBcDE78BEvTDC4prsei4kASQvEfwFDBEct-ixuX7HDE",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"Data Transpose Pipeline @{pipeline().Pipeline}  Suceeded\",\n    \"message\": \"Data Transposition finished successfully!\",\n    \"color\": \"Green\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "send_email_failure",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "load_transposed_data",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-04.uksouth.logic.azure.com:443/workflows/1e029c20f2ec48e5b668e0b6b3f629ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qBcDE78BEvTDC4prsei4kASQvEfwFDBEct-ixuX7HDE",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"@{pipeline().Pipeline} For Data Transposition Failed\",\n    \"message\": \"Error : @{activity('load_transposed_data').output.errors[0].Message}\",\n    \"color\": \"Red\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n    }",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"load_id": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Transposed Data"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-24T11:05:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

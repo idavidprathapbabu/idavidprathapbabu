@@ -1,0 +1,155 @@
+{
+	"name": "ds_excel_file_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_adls_gen2_filelocation",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"fileSystem": "raw"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Data Provider",
+				"type": "String"
+			},
+			{
+				"name": "Channel",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "LOC Sub Brand",
+				"type": "String"
+			},
+			{
+				"name": "LOC Brand",
+				"type": "String"
+			},
+			{
+				"name": "LOC Sub Category 3",
+				"type": "String"
+			},
+			{
+				"name": "LOC Category",
+				"type": "String"
+			},
+			{
+				"name": "Pack Size",
+				"type": "String"
+			},
+			{
+				"name": "Unit of Measure",
+				"type": "String"
+			},
+			{
+				"name": "Pack Form",
+				"type": "String"
+			},
+			{
+				"name": "Pack Strength",
+				"type": "String"
+			},
+			{
+				"name": "Active Ingredient",
+				"type": "String"
+			},
+			{
+				"name": "Manufacturer",
+				"type": "String"
+			},
+			{
+				"name": "ATC Code",
+				"type": "String"
+			},
+			{
+				"name": "OTC Code",
+				"type": "String"
+			},
+			{
+				"name": "Promo/Non-Promo",
+				"type": "String"
+			},
+			{
+				"name": "Promo Type",
+				"type": "String"
+			},
+			{
+				"name": "Currency",
+				"type": "String"
+			},
+			{
+				"name": "Period",
+				"type": "String"
+			},
+			{
+				"name": "Periodicity",
+				"type": "String"
+			},
+			{
+				"name": "Value",
+				"type": "String"
+			},
+			{
+				"name": "Unit Sales",
+				"type": "String"
+			},
+			{
+				"name": "Weighted Distribution",
+				"type": "String"
+			},
+			{
+				"name": "Numeric Distribution",
+				"type": "String"
+			},
+			{
+				"name": "Value Promo",
+				"type": "String"
+			},
+			{
+				"name": "Unit Sales Promo",
+				"type": "String"
+			},
+			{
+				"name": "Value Non Promo",
+				"type": "String"
+			},
+			{
+				"name": "Unit Sales Non Promo",
+				"type": "String"
+			},
+			{
+				"name": "Value Base",
+				"type": "String"
+			},
+			{
+				"name": "Unit Sales Base",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

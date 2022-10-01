@@ -1,0 +1,358 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_gskcompass_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "data_provider",
+				"type": "varchar"
+			},
+			{
+				"name": "channel",
+				"type": "varchar"
+			},
+			{
+				"name": "sku",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_sub_brand",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_brand",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_sub_category_3",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_category",
+				"type": "varchar"
+			},
+			{
+				"name": "pack_size",
+				"type": "varchar"
+			},
+			{
+				"name": "unit_of_measure",
+				"type": "varchar"
+			},
+			{
+				"name": "pack_form",
+				"type": "varchar"
+			},
+			{
+				"name": "pack_strength",
+				"type": "varchar"
+			},
+			{
+				"name": "active_ingredient",
+				"type": "varchar"
+			},
+			{
+				"name": "manufacturer",
+				"type": "varchar"
+			},
+			{
+				"name": "atc_code",
+				"type": "varchar"
+			},
+			{
+				"name": "otc_code",
+				"type": "varchar"
+			},
+			{
+				"name": "promo_non_promo",
+				"type": "varchar"
+			},
+			{
+				"name": "promo_type",
+				"type": "varchar"
+			},
+			{
+				"name": "currency",
+				"type": "varchar"
+			},
+			{
+				"name": "measure",
+				"type": "varchar"
+			},
+			{
+				"name": "end_data_of_latest_data_period",
+				"type": "varchar"
+			},
+			{
+				"name": "month_1",
+				"type": "varchar"
+			},
+			{
+				"name": "month_2",
+				"type": "varchar"
+			},
+			{
+				"name": "month_3",
+				"type": "varchar"
+			},
+			{
+				"name": "month_4",
+				"type": "varchar"
+			},
+			{
+				"name": "month_5",
+				"type": "varchar"
+			},
+			{
+				"name": "month_6",
+				"type": "varchar"
+			},
+			{
+				"name": "month_7",
+				"type": "varchar"
+			},
+			{
+				"name": "month_8",
+				"type": "varchar"
+			},
+			{
+				"name": "month_9",
+				"type": "varchar"
+			},
+			{
+				"name": "month_10",
+				"type": "varchar"
+			},
+			{
+				"name": "month_11",
+				"type": "varchar"
+			},
+			{
+				"name": "month_12",
+				"type": "varchar"
+			},
+			{
+				"name": "month_13",
+				"type": "varchar"
+			},
+			{
+				"name": "month_14",
+				"type": "varchar"
+			},
+			{
+				"name": "month_15",
+				"type": "varchar"
+			},
+			{
+				"name": "month_16",
+				"type": "varchar"
+			},
+			{
+				"name": "month_17",
+				"type": "varchar"
+			},
+			{
+				"name": "month_18",
+				"type": "varchar"
+			},
+			{
+				"name": "month_19",
+				"type": "varchar"
+			},
+			{
+				"name": "month_20",
+				"type": "varchar"
+			},
+			{
+				"name": "month_21",
+				"type": "varchar"
+			},
+			{
+				"name": "month_22",
+				"type": "varchar"
+			},
+			{
+				"name": "month_23",
+				"type": "varchar"
+			},
+			{
+				"name": "month_24",
+				"type": "varchar"
+			},
+			{
+				"name": "month_25",
+				"type": "varchar"
+			},
+			{
+				"name": "month_26",
+				"type": "varchar"
+			},
+			{
+				"name": "month_27",
+				"type": "varchar"
+			},
+			{
+				"name": "month_28",
+				"type": "varchar"
+			},
+			{
+				"name": "month_29",
+				"type": "varchar"
+			},
+			{
+				"name": "month_30",
+				"type": "varchar"
+			},
+			{
+				"name": "month_31",
+				"type": "varchar"
+			},
+			{
+				"name": "month_32",
+				"type": "varchar"
+			},
+			{
+				"name": "month_33",
+				"type": "varchar"
+			},
+			{
+				"name": "month_34",
+				"type": "varchar"
+			},
+			{
+				"name": "month_35",
+				"type": "varchar"
+			},
+			{
+				"name": "month_36",
+				"type": "varchar"
+			},
+			{
+				"name": "month_37",
+				"type": "varchar"
+			},
+			{
+				"name": "month_38",
+				"type": "varchar"
+			},
+			{
+				"name": "month_39",
+				"type": "varchar"
+			},
+			{
+				"name": "month_40",
+				"type": "varchar"
+			},
+			{
+				"name": "month_41",
+				"type": "varchar"
+			},
+			{
+				"name": "month_42",
+				"type": "varchar"
+			},
+			{
+				"name": "month_43",
+				"type": "varchar"
+			},
+			{
+				"name": "month_44",
+				"type": "varchar"
+			},
+			{
+				"name": "month_45",
+				"type": "varchar"
+			},
+			{
+				"name": "month_46",
+				"type": "varchar"
+			},
+			{
+				"name": "month_47",
+				"type": "varchar"
+			},
+			{
+				"name": "month_48",
+				"type": "varchar"
+			},
+			{
+				"name": "month_49",
+				"type": "varchar"
+			},
+			{
+				"name": "month_50",
+				"type": "varchar"
+			},
+			{
+				"name": "month_51",
+				"type": "varchar"
+			},
+			{
+				"name": "month_52",
+				"type": "varchar"
+			},
+			{
+				"name": "month_53",
+				"type": "varchar"
+			},
+			{
+				"name": "month_54",
+				"type": "varchar"
+			},
+			{
+				"name": "month_55",
+				"type": "varchar"
+			},
+			{
+				"name": "month_56",
+				"type": "varchar"
+			},
+			{
+				"name": "month_57",
+				"type": "varchar"
+			},
+			{
+				"name": "month_58",
+				"type": "varchar"
+			},
+			{
+				"name": "month_59",
+				"type": "varchar"
+			},
+			{
+				"name": "month_60",
+				"type": "varchar"
+			},
+			{
+				"name": "filename",
+				"type": "varchar"
+			},
+			{
+				"name": "load_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "load_id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "gskcompass_stg",
+			"table": "gskcompass_81_stg_tbl"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,12 @@
+{
+	"name": "gskcompass-shr",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/2e8b714f-b4cc-4a87-a3df-437201815c02/resourcegroups/ch-corp-devtest-am01-globalapps-rg01/providers/Microsoft.DataFactory/factories/ch-corp-devtest-am01-globalapps-adf01/integrationruntimes/us-bi-global-adf-dev-ir",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

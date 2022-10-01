@@ -1,0 +1,346 @@
+{
+	"name": "Excel1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureRawBlob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "raw"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Data Provider",
+				"type": "String"
+			},
+			{
+				"name": "Channel",
+				"type": "String"
+			},
+			{
+				"name": "SKU",
+				"type": "String"
+			},
+			{
+				"name": "LOC Sub Brand",
+				"type": "String"
+			},
+			{
+				"name": "LOC Brand",
+				"type": "String"
+			},
+			{
+				"name": "LOC Sub Category 3",
+				"type": "String"
+			},
+			{
+				"name": "LOC Category",
+				"type": "String"
+			},
+			{
+				"name": "Pack Size",
+				"type": "String"
+			},
+			{
+				"name": "Unit of Measure",
+				"type": "String"
+			},
+			{
+				"name": "Pack Form",
+				"type": "String"
+			},
+			{
+				"name": "Pack Strength",
+				"type": "String"
+			},
+			{
+				"name": "Active Ingredient",
+				"type": "String"
+			},
+			{
+				"name": "Manufacturer",
+				"type": "String"
+			},
+			{
+				"name": "ATC Code",
+				"type": "String"
+			},
+			{
+				"name": "OTC Code",
+				"type": "String"
+			},
+			{
+				"name": "Promo/Non-Promo",
+				"type": "String"
+			},
+			{
+				"name": "Promo Type",
+				"type": "String"
+			},
+			{
+				"name": "Currency",
+				"type": "String"
+			},
+			{
+				"name": "Measure",
+				"type": "String"
+			},
+			{
+				"name": "End Data of Latest Data Period",
+				"type": "String"
+			},
+			{
+				"name": "Month 1",
+				"type": "String"
+			},
+			{
+				"name": "Month 2",
+				"type": "String"
+			},
+			{
+				"name": "Month 3",
+				"type": "String"
+			},
+			{
+				"name": "Month 4",
+				"type": "String"
+			},
+			{
+				"name": "Month 5",
+				"type": "String"
+			},
+			{
+				"name": "Month 6",
+				"type": "String"
+			},
+			{
+				"name": "Month 7",
+				"type": "String"
+			},
+			{
+				"name": "Month 8",
+				"type": "String"
+			},
+			{
+				"name": "Month 9",
+				"type": "String"
+			},
+			{
+				"name": "Month 10",
+				"type": "String"
+			},
+			{
+				"name": "Month 11",
+				"type": "String"
+			},
+			{
+				"name": "Month 12",
+				"type": "String"
+			},
+			{
+				"name": "Month 13",
+				"type": "String"
+			},
+			{
+				"name": "Month 14",
+				"type": "String"
+			},
+			{
+				"name": "Month 15",
+				"type": "String"
+			},
+			{
+				"name": "Month 16",
+				"type": "String"
+			},
+			{
+				"name": "Month 17",
+				"type": "String"
+			},
+			{
+				"name": "Month 18",
+				"type": "String"
+			},
+			{
+				"name": "Month 19",
+				"type": "String"
+			},
+			{
+				"name": "Month 20",
+				"type": "String"
+			},
+			{
+				"name": "Month 21",
+				"type": "String"
+			},
+			{
+				"name": "Month 22",
+				"type": "String"
+			},
+			{
+				"name": "Month 23",
+				"type": "String"
+			},
+			{
+				"name": "Month 24",
+				"type": "String"
+			},
+			{
+				"name": "Month 25",
+				"type": "String"
+			},
+			{
+				"name": "Month 26",
+				"type": "String"
+			},
+			{
+				"name": "Month 27",
+				"type": "String"
+			},
+			{
+				"name": "Month 28",
+				"type": "String"
+			},
+			{
+				"name": "Month 29",
+				"type": "String"
+			},
+			{
+				"name": "Month 30",
+				"type": "String"
+			},
+			{
+				"name": "Month 31",
+				"type": "String"
+			},
+			{
+				"name": "Month 32",
+				"type": "String"
+			},
+			{
+				"name": "Month 33",
+				"type": "String"
+			},
+			{
+				"name": "Month 34",
+				"type": "String"
+			},
+			{
+				"name": "Month 35",
+				"type": "String"
+			},
+			{
+				"name": "Month 36",
+				"type": "String"
+			},
+			{
+				"name": "Month 37",
+				"type": "String"
+			},
+			{
+				"name": "Month 38",
+				"type": "String"
+			},
+			{
+				"name": "Month 39",
+				"type": "String"
+			},
+			{
+				"name": "Month 40",
+				"type": "String"
+			},
+			{
+				"name": "Month 41",
+				"type": "String"
+			},
+			{
+				"name": "Month 42",
+				"type": "String"
+			},
+			{
+				"name": "Month 43",
+				"type": "String"
+			},
+			{
+				"name": "Month 44",
+				"type": "String"
+			},
+			{
+				"name": "Month 45",
+				"type": "String"
+			},
+			{
+				"name": "Month 46",
+				"type": "String"
+			},
+			{
+				"name": "Month 47",
+				"type": "String"
+			},
+			{
+				"name": "Month 48",
+				"type": "String"
+			},
+			{
+				"name": "Month 49",
+				"type": "String"
+			},
+			{
+				"name": "Month 50",
+				"type": "String"
+			},
+			{
+				"name": "Month 51",
+				"type": "String"
+			},
+			{
+				"name": "Month 52",
+				"type": "String"
+			},
+			{
+				"name": "Month 53",
+				"type": "String"
+			},
+			{
+				"name": "Month 54",
+				"type": "String"
+			},
+			{
+				"name": "Month 55",
+				"type": "String"
+			},
+			{
+				"name": "Month 56",
+				"type": "String"
+			},
+			{
+				"name": "Month 57",
+				"type": "String"
+			},
+			{
+				"name": "Month 58",
+				"type": "String"
+			},
+			{
+				"name": "Month 59",
+				"type": "String"
+			},
+			{
+				"name": "Month 60",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

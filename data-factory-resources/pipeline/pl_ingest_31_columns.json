@@ -1,0 +1,1116 @@
+{
+	"name": "pl_ingest_31_columns",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_file_schema_of_raw_file",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_excel_file_list",
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@pipeline().parameters.pipeline_filename",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"structure"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "get_ref_schema_31_columns",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_referece_schema",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_reference_schema_filename": {
+								"value": "@pipeline().parameters.pipeline_reference_schema_31",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"structure"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "get_file_schema_of_raw_file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get_ref_schema_31_columns",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('get_file_schema_of_raw_file').output.structure,activity('get_ref_schema_31_columns').output.structure)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "copy_data_31_coumns",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"additionalColumns": [
+										{
+											"name": "filename",
+											"value": {
+												"value": "@pipeline().parameters.pipeline_filename",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "load_id",
+											"value": {
+												"value": "@int(pipeline().parameters.pipeline_31_load_id)",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "load_date",
+											"value": {
+												"value": "@utcnow()",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Country",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Country",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Data Provider",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Data_Provider",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Channel",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Channel",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "SKU",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "SKU",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "LOC Brand",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "LOC_Brand",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "LOC Category",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "LOC_Category",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "LOC Sub Brand",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "LOC_Sub_Brand",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "LOC Sub Category 3",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "LOC_Sub_Category_3",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Pack Size",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Pack_Size",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Unit of Measure",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Unit_of_Measure",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Pack Form",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Pack_Form",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Pack Strength",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Pack_Strength",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Active Ingredient",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Active_Ingredient",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Manufacturer",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Manufacturer",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "ATC Code",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "ATC_Code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "OTC Code",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "OTC_Code",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Promo/Non-Promo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Promo_Non_Promo",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Promo Type",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Promo_Type",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Currency",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Currency",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Period",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Period",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Periodicity",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Periodicity",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Value",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Value",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Unit Sales",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Unit_Sales",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Weighted Distribution",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Weighted_Distribution",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Numeric Distribution",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Numeric_Distribution",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Value Promo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Value_Promo",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Unit Sales Promo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Unit_Sales_Promo",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Value Non Promo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Value_Non_Promo",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Unit Sales Non Promo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Unit_Sales_Non_Promo",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Value Base",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Value_Base",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "Unit Sales Base",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Unit_Sales_Base",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 5,
+												"precision": 20
+											}
+										},
+										{
+											"source": {
+												"name": "filename",
+												"type": "String"
+											},
+											"sink": {
+												"name": "filename",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "load_date",
+												"type": "String"
+											},
+											"sink": {
+												"name": "load_date",
+												"type": "DateTime",
+												"physicalType": "datetime"
+											}
+										},
+										{
+											"source": {
+												"name": "load_id",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Batch_id",
+												"type": "Int32",
+												"physicalType": "int"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_excel_file_list",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@pipeline().parameters.pipeline_filename",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_ingest_raw_file_data",
+									"type": "DatasetReference",
+									"parameters": {
+										"ds_dest_schema": {
+											"value": "@pipeline().parameters.pipeline_dest_schema",
+											"type": "Expression"
+										},
+										"ds_dest_table": {
+											"value": "@pipeline().parameters.pipeline_dest_table",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Copy data 31 sucess",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "copy_data_31_coumns",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT  '@{pipeline().RunId}' AS RUN_ID\n,'@{pipeline().DataFactory}' AS DATAFACTORY_NAME \n,'@{pipeline().Pipeline}' AS PIPELINE_NAME\n,'@{pipeline().parameters.pipeline_filename}' As file_name\n,'Copy data 81 ' as Source\n,'Azure Sql DB' as Destination\n,'@{activity('copy_data_31_coumns').output.rowsRead}' as RowsRead\n,'@{activity('copy_data_31_coumns').output.rowsCopied}' as RowsCopied\n,'@{activity('copy_data_31_coumns').output.copyDuration}' as copyDuration\n,'@{activity('copy_data_31_coumns').output.executionDetails[0].start}' as Execution_start\n,'@{activity('copy_data_31_coumns').output.executionDetails[0].status}' as Execution_Status\n,'1' as Execution_flag\n,'@{utcnow()}' as ErrorLoggedTime",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "RUN_ID",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "runid",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "DATAFACTORY_NAME",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "datafactory_name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "PIPELINE_NAME",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "pipeline_name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "file_name",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "filename",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "source",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Destination",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "destination",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "RowsRead",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "rowsRead",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "RowsCopied",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "rowsCopied",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "copyDuration",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "copyDuration",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_start",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "starttime",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_Status",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Execution_Status",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_flag",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Execution_flag",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "ErrorLoggedTime",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ErrorLoggedTime",
+												"type": "DateTime",
+												"physicalType": "datetime"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlQery",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlQery",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Copy data 31 failure",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "copy_data_31_coumns",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT  '@{pipeline().RunId}' AS RUN_ID\n,'@{pipeline().DataFactory}' AS DATAFACTORY_NAME \n,'@{pipeline().Pipeline}' AS PIPELINE_NAME\n,'@{pipeline().parameters.pipeline_filename}' As file_name\n,'Copy data 81 ' as Source\n,'Azure Sql DB' as Destination\n,ISNULL('@{activity('copy_data_31_coumns').output.rowsRead}',0) as RowsRead\n,ISNULL('@{activity('copy_data_31_coumns').output.rowsCopied}',0) as RowsCopied\n,ISNULL('@{activity('copy_data_31_coumns').output.copyDuration}',0) as copyDuration\n,'@{activity('copy_data_31_coumns').output.executionDetails[0].start}' as Execution_start\n,'@{activity('copy_data_31_coumns').output.executionDetails[0].status}' as Execution_Status\n,'2' as Execution_flag\n,'@{utcnow()}' as ErrorLoggedTime\n,'@{replace(activity('copy_data_31_coumns').output.errors[0].Message,'''','')}' as ErrorDescriprion",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "RUN_ID",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "runid",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "DATAFACTORY_NAME",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "datafactory_name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "PIPELINE_NAME",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "pipeline_name",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "file_name",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "filename",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Source",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "source",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Destination",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "destination",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "RowsRead",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "rowsRead",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "RowsCopied",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "rowsCopied",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "copyDuration",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "copyDuration",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_start",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "starttime",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_Status",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Execution_Status",
+												"type": "String",
+												"physicalType": "varchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Execution_flag",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Execution_flag",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 0,
+												"precision": 18
+											}
+										},
+										{
+											"source": {
+												"name": "ErrorLoggedTime",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "ErrorLoggedTime",
+												"type": "DateTime",
+												"physicalType": "datetime"
+											}
+										},
+										{
+											"source": {
+												"name": "ErrorDescriprion"
+											},
+											"sink": {
+												"name": "ERROR_description"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlQery",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlQery",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"pipeline_filename": {
+				"type": "string"
+			},
+			"pipeline_dest_schema": {
+				"type": "string",
+				"defaultValue": "stg_gskcompass_dev"
+			},
+			"pipeline_dest_table": {
+				"type": "string",
+				"defaultValue": "gskcompass_31_stg_tbl"
+			},
+			"pipeline_reference_schema_81": {
+				"type": "string",
+				"defaultValue": "schema_81.xlsx"
+			},
+			"pipeline_reference_schema_31": {
+				"type": "string",
+				"defaultValue": "schema_31.xlsx"
+			},
+			"pipeline_31_load_id": {
+				"type": "string",
+				"defaultValue": "@variables('g_load_id')"
+			}
+		},
+		"folder": {
+			"name": "RawfileProcess"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-22T18:21:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

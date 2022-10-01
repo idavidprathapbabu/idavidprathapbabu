@@ -1,0 +1,17 @@
+{
+	"name": "gskcompass-data-factory",
+	"properties": {
+		"globalParameters": {
+			"g_load_id": {
+				"type": "int",
+				"value": 1
+			}
+		}
+	},
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "48c2542b-5902-4d48-8edd-cc7d7e539a84",
+		"tenantId": "d1e23d19-ded6-4d66-850c-0d4f35bf2edc"
+	}
+}

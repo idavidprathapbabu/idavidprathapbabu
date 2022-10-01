@@ -1,0 +1,186 @@
+{
+	"name": "AzureSqlTable5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_gskcompass_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Data_Provider",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Channel",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SKU",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOC_Brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOC_Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOC_Sub_Brand",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LOC_Sub_Category_3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pack_Size",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit_of_Measure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pack_Form",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pack_Strength",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Active_Ingredient",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Manufacturer",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ATC_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "OTC_Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Promo_Non_Promo",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Promo_Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Periodicity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Value",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Unit_Sales",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Weighted_Distribution",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Numeric_Distribution",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Value_Promo",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Unit_Sales_Promo",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Value_Non_Promo",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Unit_Sales_Non_Promo",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Value_Base",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "Unit_Sales_Base",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 5
+			},
+			{
+				"name": "filename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "load_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "load_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Measure",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Batch_id",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "stg_gskcompass_dev",
+			"table": "gskcompass_31_stg_tbl"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

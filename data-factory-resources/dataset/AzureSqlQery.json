@@ -1,0 +1,74 @@
+{
+	"name": "AzureSqlQery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_genric_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "runid",
+				"type": "varchar"
+			},
+			{
+				"name": "datafactory_name",
+				"type": "varchar"
+			},
+			{
+				"name": "pipeline_name",
+				"type": "varchar"
+			},
+			{
+				"name": "filename",
+				"type": "varchar"
+			},
+			{
+				"name": "source",
+				"type": "varchar"
+			},
+			{
+				"name": "destination",
+				"type": "varchar"
+			},
+			{
+				"name": "rowsRead",
+				"type": "varchar"
+			},
+			{
+				"name": "rowsCopied",
+				"type": "varchar"
+			},
+			{
+				"name": "copyDuration",
+				"type": "varchar"
+			},
+			{
+				"name": "starttime",
+				"type": "varchar"
+			},
+			{
+				"name": "Execution_Status",
+				"type": "varchar"
+			},
+			{
+				"name": "Execution_flag",
+				"type": "varchar"
+			},
+			{
+				"name": "ErrorLoggedTime",
+				"type": "varchar"
+			},
+			{
+				"name": "ERROR_description",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "stg_gskcompass_dev",
+			"table": "gskcompass_datapipeline_log"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

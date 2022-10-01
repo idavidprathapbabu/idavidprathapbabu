@@ -1,0 +1,484 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_gskcompass_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "data_provider",
+				"type": "varchar"
+			},
+			{
+				"name": "channel",
+				"type": "varchar"
+			},
+			{
+				"name": "sku",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_sub_brand",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_brand",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_sub_category_3",
+				"type": "varchar"
+			},
+			{
+				"name": "loc_category",
+				"type": "varchar"
+			},
+			{
+				"name": "pack_size",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "unit_of_measure",
+				"type": "varchar"
+			},
+			{
+				"name": "pack_form",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "pack_strength",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "active_ingredient",
+				"type": "varchar"
+			},
+			{
+				"name": "manufacturer",
+				"type": "varchar"
+			},
+			{
+				"name": "atc_code",
+				"type": "varchar"
+			},
+			{
+				"name": "otc_code",
+				"type": "varchar"
+			},
+			{
+				"name": "promo_non_promo",
+				"type": "varchar"
+			},
+			{
+				"name": "promo_type",
+				"type": "varchar"
+			},
+			{
+				"name": "currency",
+				"type": "varchar"
+			},
+			{
+				"name": "measure",
+				"type": "varchar"
+			},
+			{
+				"name": "end_data_of_latest_data_period",
+				"type": "date"
+			},
+			{
+				"name": "month_1",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_2",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_3",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_4",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_5",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_6",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_7",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_8",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_9",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_10",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_11",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_12",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_13",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_14",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_15",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_16",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_17",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_18",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_19",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_20",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_21",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_22",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_23",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_24",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_25",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_26",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_27",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_28",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_29",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_30",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_31",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_32",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_33",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_34",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_35",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_36",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_37",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_38",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_39",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_40",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_41",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_42",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_43",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_44",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_45",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_46",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_47",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_48",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_49",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_50",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_51",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_52",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_53",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_54",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_55",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_56",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_57",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_58",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_59",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "month_60",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			},
+			{
+				"name": "filename",
+				"type": "varchar"
+			},
+			{
+				"name": "load_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "load_id",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "stg_gskcompass_dev",
+			"table": "gskcompass_81_stg_tbl"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

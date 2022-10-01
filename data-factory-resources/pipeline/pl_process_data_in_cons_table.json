@@ -1,0 +1,94 @@
+{
+	"name": "pl_process_data_in_cons_table",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Script1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "1.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "send_email_sucess",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Data flow1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-04.uksouth.logic.azure.com:443/workflows/1e029c20f2ec48e5b668e0b6b3f629ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qBcDE78BEvTDC4prsei4kASQvEfwFDBEct-ixuX7HDE",
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"title\": \"@{pipeline().Pipeline} to insert the data in [stg_gskcompass_dev].[gskcompass_31_stg_tbl_Consolidated] Suceeded\",\n    \"message\": \" Consolidated table [stg_gskcompass_dev].[gskcompass_31_stg_tbl_Consolidated] Pipeline run finished successfully!\",\n    \"color\": \"Green\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ln_gskcompass_sqldb",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "NonQuery",
+							"text": "TRUNCATE TABLE [stg_gskcompass_dev].[gskcompass_31_stg_tbl_Consolidated];"
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-07-24T17:56:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

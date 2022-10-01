@@ -1,0 +1,31 @@
+{
+	"name": "ds_fromsqlserver_to_azuresql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_azuresql_frm_onpremise",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"dsdesttable": {
+				"type": "string"
+			},
+			"dsdestschema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().dsdestschema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().dsdesttable",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

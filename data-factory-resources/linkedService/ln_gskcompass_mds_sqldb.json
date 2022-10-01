@@ -1,0 +1,23 @@
+{
+	"name": "ln_gskcompass_mds_sqldb",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "MDS Database maintained on Azure VM",
+		"parameters": {
+			"dbName": {
+				"type": "string",
+				"defaultValue": "x"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=am01wnpsql0019.ad.corpnet4.net;initial catalog=@{linkedService().dbName};user id=gf12u1621;trustservercertificate=True;connection timeout=300",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlM2FhYTg2ZC1mZmNlLTRiOTUtYTZmNC00ZWZhN2UwODEzOWYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "gskcompass-shr",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

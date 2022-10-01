@@ -1,0 +1,13 @@
+{
+	"name": "ds_transposed_from_sql_query",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ln_gskcompass_sqldb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

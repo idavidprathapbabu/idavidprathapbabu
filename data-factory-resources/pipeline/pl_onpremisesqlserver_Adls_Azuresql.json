@@ -1,0 +1,331 @@
+{
+	"name": "pl_onpremisesqlserver_Adls_Azuresql",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_table_list",
+				"description": "Table list from metadata table to destination Azure Sql Database",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "/****** Script for SelectTopNRows command from SSMS  ******/\nSELECT \n       [source_database_name]\n      ,[source_Table_Schema]\n      ,[source_Table_Name]\n      ,[dest_Table_Schema]\n      ,[dest_Table_Name]\n      ,[is_active]\n  FROM [gskcompass_stg].[gskcompass_exportedtables]\n  WHERE IS_ACTIVE='Y'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "AzureSqlQery",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "For_Each_Table",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "get_table_list",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('get_table_list').output.value",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "copy_data_azure_adls",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_gskcompass_mds_db",
+									"type": "DatasetReference",
+									"parameters": {
+										"dsdbname": {
+											"value": "@item().source_database_name",
+											"type": "Expression"
+										},
+										"dstablename": {
+											"value": "@item().source_Table_Name",
+											"type": "Expression"
+										},
+										"dsschemaname": {
+											"value": "@item().source_Table_Schema",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_fromsqlserver_to_adls",
+									"type": "DatasetReference",
+									"parameters": {
+										"dstablename": {
+											"value": "@item().dest_table_name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "send_email_sucess",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "copy_data_to_azuresql_db",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://prod-04.uksouth.logic.azure.com:443/workflows/1e029c20f2ec48e5b668e0b6b3f629ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qBcDE78BEvTDC4prsei4kASQvEfwFDBEct-ixuX7HDE",
+								"method": "POST",
+								"body": {
+									"value": "{\n    \"title\": \"@{pipeline().Pipeline} Suceeded\",\n    \"message\": \"Pipeline run finished successfully!\",\n    \"color\": \"Green\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n}",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "send_email_failure",
+							"type": "WebActivity",
+							"dependsOn": [
+								{
+									"activity": "copy_data_to_azuresql_db",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "https://prod-04.uksouth.logic.azure.com:443/workflows/1e029c20f2ec48e5b668e0b6b3f629ec/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qBcDE78BEvTDC4prsei4kASQvEfwFDBEct-ixuX7HDE",
+								"method": "POST",
+								"body": {
+									"value": "{\n    \"title\": \"@{pipeline().Pipeline} For Table : - @{variables('vdesttable')} Failed\",\n    \"message\": \"Error : @{activity('copy_data_to_azuresql_db').output.errors[0].Message}\",\n    \"color\": \"Red\",\n    \"dataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"pipelineRunId\": \"@{pipeline().RunId}\",\n    \"time\": \"@{utcnow()}\"\n    }",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "copy_data_to_azuresql_db",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "set_file_name",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": {
+										"value": "truncate table @{ concat(variables('vestschema'),'.',variables('vdesttable'))}",
+										"type": "Expression"
+									},
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"parallelCopies": 4,
+								"dataIntegrationUnits": 16,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_fromsqlserver_to_adls",
+									"type": "DatasetReference",
+									"parameters": {
+										"dstablename": {
+											"value": "@variables('vfilename')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_fromsqlserver_to_azuresql",
+									"type": "DatasetReference",
+									"parameters": {
+										"dsdesttable": {
+											"value": "@variables('vdesttable')",
+											"type": "Expression"
+										},
+										"dsdestschema": {
+											"value": "@variables('vestschema')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "set_file_name",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "copy_data_azure_adls",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "vfilename",
+								"value": {
+									"value": "@item().source_table_name",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "set_destination_schema",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "vestschema",
+								"value": {
+									"value": "@item().dest_table_schema",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "set_destination_table",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "vdesttable",
+								"value": {
+									"value": "@item().dest_table_name",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"vfilename": {
+				"type": "String"
+			},
+			"vdesttable": {
+				"type": "String"
+			},
+			"vestschema": {
+				"type": "String",
+				"defaultValue": "mart"
+			}
+		},
+		"folder": {
+			"name": "OnPremtoAzuresql"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-21T13:09:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
